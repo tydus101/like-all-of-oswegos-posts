@@ -9,15 +9,6 @@ window.fbAsyncInit = function() {
       version    : 'v2.8'
     });
     FB.AppEvents.logPageView();
-    FB.getLoginStatus(function (response) {
-    if (response.status == 'connected') {
-        console.log('Logged in.');
-    }
-    else {
-        FB.login();
-    }
-
-});
   };
 
   (function(d, s, id){
@@ -27,3 +18,17 @@ window.fbAsyncInit = function() {
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+
+$("#like").click(function(e){
+    FB.getLoginStatus(function (response) {
+    if (response.status == 'connected') {
+        console.log('Logged in.');
+    }
+    else {
+        FB.login();
+    }
+
+});
+});
+
+
