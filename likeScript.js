@@ -22,7 +22,7 @@ window.fbAsyncInit = function() {
 $("#like").click(function(e){
     FB.getLoginStatus(function (response) {
     if (response.status == 'connected') {
-        console.log('response');
+        console.log(response);
     }
     else {
         FB.login(function(response) {
