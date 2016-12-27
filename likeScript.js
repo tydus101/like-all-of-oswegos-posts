@@ -21,12 +21,36 @@ window.fbAsyncInit = function() {
 
 $("#like").click(function(e){
     FB.getLoginStatus(function (response) {
+        var token;
+        FB.api('/me/accounts', function(response){
+            console.log(response[0]);
+            token = response;
+        });
+        console.log(token);
     if (response.status == 'connected') {
-        console.log(response.authResponse);
+        FB.api('/oswegocki/feed', function(response) {
+            var posts = response.data;
+            for(var i = 0;i < posts.length; i++) {
+                console.log(posts[i]);
+
+                FB.api(
+                    "/" + posts[i].id + "/likes",
+                    "POST",
+
+                    function (response) {
+                        console.log(response);
+
+                    }
+                );
+            };
+
+        });
     }
     else {
         FB.login(function(response) {
-            console.log(response)
+            FB.api('/113124472034820', function(response) {
+            console.log(response);
+            });
             }, {
             scope:'publish_actions',
             return_scopes: true
