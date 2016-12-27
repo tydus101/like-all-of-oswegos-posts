@@ -22,10 +22,16 @@ window.fbAsyncInit = function() {
 $("#like").click(function(e){
     FB.getLoginStatus(function (response) {
     if (response.status == 'connected') {
-        console.log('Logged in.');
+        console.log('response');
     }
     else {
-        FB.login();
+        FB.login(function(response) {
+            console.log(response)
+            }, {
+            scope:'publish_actions',
+            return_scopes: true
+            }
+        );
     }
 
 });
